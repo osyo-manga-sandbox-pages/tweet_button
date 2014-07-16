@@ -14,6 +14,39 @@
     </script>
   </head>
   <body>
+    <style>
+      a.my-twitter-share-button,
+      a.twitter-mention-button,
+      a.twitter-hashtag-button {
+        display: inline-block;
+        padding: 1px 3px 0 19px;
+       
+        border: #ccc solid 1px;
+        border-radius: 3px;
+        background: #f8f8f8 url(//twitter.com/favicons/favicon.ico) 2px 3px no-repeat;
+        background: url(//twitter.com/favicons/favicon.ico) 2px 3px no-repeat,
+                    -webkit-linear-gradient(#fff, #dedede);
+        background: url(//twitter.com/favicons/favicon.ico) 2px 3px no-repeat,
+                    linear-gradient(#fff, #dedede);
+        background-size: 16px 13px, auto auto;
+       
+        /* Text */
+        font: bold 11px/17px Helvetica, Arial, sans-serif;
+        text-decoration: none;
+        color: #333;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+       
+        white-space: nowrap;
+      }
+       
+      /* Colour Highlight for keyboard navigation */
+      a.my-twitter-share-button:focus,
+      a.twitter-mention-button:focus,
+      a.twitter-hashtag-button:focus {
+        outline: none;
+        border-color: #0089cb;
+      }
+    </style>
     <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
     <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js'></script>
     <link href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.css' rel='stylesheet'>
@@ -44,6 +77,9 @@
         <div class='input-group'>
           <input class='form-control' ng-model='text' type='text'>
         </div>
+        <br>
+        <a class='my-twitter-share-button' data-lang='ja' data-size='large' data-text='{{ text }}' data-url=' ' href='https://twitter.com/share?text={{ text }}'>ツイート</a>
+        <br>
         <br>
         <div id='tweetBtn'></div>
       </div>
