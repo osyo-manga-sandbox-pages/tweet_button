@@ -45,11 +45,11 @@
       }
     </style>
     <script>
-      var TweetDeathCtrl = function ($scope) {
+      var TweetButtonCtrl = function ($scope) {
         $scope.text = "ほむほむ";
         $scope.open_tweet_window = function (){
           // window.open('http://lingr.com/','','scrollbars=yes,width=250,height=100,');
-          window.open('https://twitter.com/share?text=' + $scope.text,'','scrollbars=yes,width=500,height=300,');
+          window.open('https://twitter.com/share?text=' + encodeURIComponent($scope.text),'','scrollbars=yes,width=500,height=300,');
           // console.log('https://twitter.com/share?text=' + $scope.text);
         }
         // $scope.$watch("text", function (newVal, oldVal){
@@ -71,7 +71,7 @@
     </script>
     <div class='container'>
       <br>
-      <div ng-controller='TweetDeathCtrl'>
+      <div ng-controller='TweetButtonCtrl'>
         <pre>{{ text }}</pre>
         <br>
         <div class='input-group'>
