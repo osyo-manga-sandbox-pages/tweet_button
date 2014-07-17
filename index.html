@@ -15,9 +15,8 @@
   </head>
   <body>
     <style>
-      a.my-twitter-share-button,
-      a.twitter-mention-button,
-      a.twitter-hashtag-button {
+      /* base css: https://dev.twitter.com/docs/tfw/embed-code-css */
+      button.my-twitter-share-button{
         display: inline-block;
         padding: 1px 3px 0 19px;
        
@@ -40,34 +39,35 @@
       }
        
       /* Colour Highlight for keyboard navigation */
-      a.my-twitter-share-button:focus,
-      a.twitter-mention-button:focus,
-      a.twitter-hashtag-button:focus {
+      button.my-twitter-share-button:focus {
         outline: none;
         border-color: #0089cb;
       }
     </style>
-    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
-    <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js'></script>
-    <link href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/ui-lightness/jquery-ui.css' rel='stylesheet'>
     <script>
       var TweetDeathCtrl = function ($scope) {
-        $scope.$watch("text", function (newVal, oldVal){
-          console.log(newVal);
-          $('#tweetBtn iframe').remove();
-          // Generate new markup
-          var tweetBtn = $('<a></a>')
-              .addClass('twitter-share-button')
-              .attr('href', 'http://twitter.com/share')
-              .attr('data-url', 'http://test.com')
-              .attr('data-size', 'large')
-              .attr('data-text', newVal);
-          $('#tweetBtn').append(tweetBtn);
-          twttr.widgets.load();
-        });
+        $scope.text = "ほむほむ";
+        $scope.open_tweet_window = function (){
+          // window.open('http://lingr.com/','','scrollbars=yes,width=250,height=100,');
+          window.open('https://twitter.com/share?text=' + $scope.text,'','scrollbars=yes,width=500,height=300,');
+          // console.log('https://twitter.com/share?text=' + $scope.text);
+        }
+        // $scope.$watch("text", function (newVal, oldVal){
+        //   console.log(newVal);
+        //   $('#tweetBtn iframe').remove();
+        //   // Generate new markup
+        //   var tweetBtn = $('<a></a>')
+        //       .addClass('twitter-share-button')
+        //       .attr('href', 'http://twitter.com/share')
+        //       .attr('data-url', 'http://test.com')
+        //       .attr('data-size', 'large')
+        //       .attr('data-text', newVal);
+        //   $('#tweetBtn').append(tweetBtn);
+        //   twttr.widgets.load();
+        // });
       }
       
-      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+      // !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
     </script>
     <div class='container'>
       <br>
@@ -78,10 +78,8 @@
           <input class='form-control' ng-model='text' type='text'>
         </div>
         <br>
-        <a class='my-twitter-share-button' data-lang='ja' data-size='large' data-text='{{ text }}' data-url=' ' href='https://twitter.com/share?text={{ text }}'>ツイート</a>
-        <br>
-        <br>
-        <div id='tweetBtn'></div>
+        <button class='my-twitter-share-button' ng-click='open_tweet_window()'>ツイート</button>
+        <!-- / #tweetBtn -->
       </div>
     </div>
   </body>
